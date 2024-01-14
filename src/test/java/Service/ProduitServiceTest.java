@@ -13,7 +13,11 @@ public class ProduitServiceTest {
     @Before
     public void setUp() throws Exception {
         service = new ProduitService();
+
         service.createProduit(new Produit(1L, "Produit1", 10.0, 5));
+
+        service.createProduit(new Produit(5L, "Produit1", 10.0, 5));
+
     }
     @Test
     public void testCreateProduit() throws Exception {
@@ -44,6 +48,7 @@ public class ProduitServiceTest {
     }
 
     @Test
+
     public void testUpdateProduitExistant() throws Exception {
         Produit produitMisAJour = new Produit(1L, "Produit1", 20.0, 10);
         service.updateProduit(produitMisAJour);
@@ -64,6 +69,23 @@ public class ProduitServiceTest {
         Produit produitInvalide = new Produit(1L, "Produit1", -20.0, -10);
         service.updateProduit(produitInvalide);
     }
+
+        @Test
+        public void testDeleteProduitExistant() throws Exception {
+            service.deleteProduit(5L);
+            Exception exception = null;
+            try {
+                service.readProduit(5L);
+            } catch (Exception e) {
+                exception = e;
+            }
+            assertNotNull("Une exception aurait dû être lancée car le produit n'existe plus", exception);
+        }
+
+        @Test(expected = Exception.class)
+        public void testDeleteProduitNonExistant() throws Exception {
+            service.deleteProduit(999L); // Doit lancer une exception
+        }
 
 
 }

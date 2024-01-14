@@ -33,6 +33,13 @@ public class ProduitService {
             throw new Exception("Prix ou quantité invalides");
         }
         produits.put(produit.getId(), produit);
+
+    }
+    public void deleteProduit(Long id) throws Exception {
+        if (!produits.containsKey(id)) {
+            throw new Exception("Produit non trouvé pour l'ID: " + id);
+        }
+        produits.remove(id);
     }
 
 
