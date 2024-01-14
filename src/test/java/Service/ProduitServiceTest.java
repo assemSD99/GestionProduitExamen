@@ -13,10 +13,11 @@ public class ProduitServiceTest {
     @Before
     public void setUp() throws Exception {
         service = new ProduitService();
+        service.createProduit(new Produit(1L, "Produit1", 10.0, 5));
     }
     @Test
     public void testCreateProduit() throws Exception {
-        Produit produit = new Produit(1L, "Produit1", 10.0, 5);
+        Produit produit = new Produit(2L, "Produit2", 10.0, 5);
         service.createProduit(produit);
         // autres assertions ici
     }
@@ -29,7 +30,7 @@ public class ProduitServiceTest {
 
     @Test
     public void testReadProduitExistant() throws Exception {
-        Produit produit = new Produit(1L, "Produit1", 10.0, 5);
+        Produit produit = new Produit(3L, "Produit1", 10.0, 5);
         service.createProduit(produit);
 
         Produit produitLu = service.readProduit(1L);
