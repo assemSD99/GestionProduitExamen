@@ -27,5 +27,20 @@ public class ProduitServiceTest {
         service.createProduit(produit);
     }
 
+    @Test
+    public void testReadProduitExistant() throws Exception {
+        Produit produit = new Produit(1L, "Produit1", 10.0, 5);
+        service.createProduit(produit);
+
+        Produit produitLu = service.readProduit(1L);
+        assertNotNull(produitLu);
+        assertEquals("Produit1", produitLu.getNom());
+    }
+
+    @Test(expected = Exception.class)
+    public void testReadProduitNonExistant() throws Exception {
+        service.readProduit(999L); // ID qui n'existe pas
+    }
+
 
 }
