@@ -18,5 +18,12 @@ public class ProduitService {
         produits.put(produit.getId(), produit);
     }
 
+    public Produit readProduit(Long id) throws Exception {
+        if (!produits.containsKey(id)) {
+            throw new Exception("Produit non trouvé");
+        }
+        return produits.get(id);
+    }
+
 
 }
