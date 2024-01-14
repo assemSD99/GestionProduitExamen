@@ -25,5 +25,12 @@ public class ProduitService {
         return produits.get(id);
     }
 
+    public void deleteProduit(Long id) throws Exception {
+        if (!produits.containsKey(id)) {
+            throw new Exception("Produit non trouvé pour l'ID: " + id);
+        }
+        produits.remove(id);
+    }
+
 
 }
