@@ -13,7 +13,6 @@ public class ProduitServiceTest {
     @Before
     public void setUp() throws Exception {
         service = new ProduitService();
-        service.createProduit(new Produit(1L, "Produit1", 10.0, 5));
     }
     @Test
     public void testCreateProduit() throws Exception {
